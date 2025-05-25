@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Doctors</title>
+    <style>
+        main div:has(div:hover)>div:not(:hover){
+          box-shadow: 0 8px 16px hsla(190, 3%, 41%, 0.702) ;
+          opacity: .4;
+          transform: scale(.91);
+          transition: 4s;
+        }
+        main div{
+          transition: 2s;
+          
+        }
+        .consult{
+          border: 3px inset hsl(188, 78%, 41%);
+          background-color: hsla(188, 61%, 56%, 0.099);
+          box-shadow: 10px 8px;
+          border-radius: 10% 10% 0 0 ;
+          transition: ease-out 1s;
+        }
+        .consult:hover{
+          transition:ease-in;
+          transform: scale(1.029);
+          transition: 2s;
+          box-shadow: 0 10px 20px hsla(188, 78%, 41%, 0.702);
+          background-color: aliceblue;
+        }
+        .clinic:hover{
+          box-shadow: 0 10px 40px hsla(188, 78%, 41%, 0.702);
+          transform: perspective(500px);
+          transform: scale(1.05);
+          transition: 2s;
+        }
+        .consult:hover{
+          transition:ease-in;
+          transform: scale(1.009);
+          transition: 2s;
+          box-shadow: 0 10px 20px hsla(188, 78%, 41%, 0.702);
+        }
+        .clinic:hover{
+          box-shadow: 0 10px 40px hsla(188, 78%, 41%, 0.702);
+          transform: perspective(500px);
+          transform: scale(1.05);
+          transition: 2s;
+        }
+        .clinic{
+          transition: ease-in-out 1s;
+        }
+        .card-title:hover {
+          color: #17a3b8d4; 
+        }
+      </style>
+  </head>
+ <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info p-3 sticky-top opacity-75">
+      <div class="container-fluid ">
+        <a class="navbar-brand text-light fs-1 fw-bolder" href="index">Doctors</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-dark"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-light fw-bold fs-5" href="login-signup">Login/SignUp</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+        <main>
+          <div class="container  d-flex justify-content-center align-items-center vh-100">
+              <div class="card-group mx-auto d-flex justify-content-center">
+                  <!-- First Card -->
+                  <div class="card border border-info m-3 clickable-div" style="width: 16rem; border-radius: 10% 0 10% 0 ;">
+                      <img class="card-img-top" style="border-radius: 15%; height: 20rem;" src="images/Video.png" alt="Card image cap">
+                      <div class="card-body">
+                          <h5 class="card-title">Video Consultant</h5>
+                          <p class="card-text">Connect within 60 seconds.</p>
+                      </div>
+                  </div>
+      
+                  <!-- Second Card -->
+                  <div class="card border border-info m-3 clickable-div" style="width: 16rem; border-radius: 10% 0 10% 0;">
+                      <img class="card-img-top" style="border-radius: 15%; height: 20rem;" src="images/Apontment.png" alt="Card image cap">
+                      <div class="card-body text-center">
+                          <h5 class="card-title">Find Doctor Near You</h5>
+                          <p class="card-text">Confirmed Appointments.</p>
+                      </div>
+                  </div>
+      
+                  <!-- Third Card -->
+                  <div class="card border border-info m-3 clickable-div" style="width: 16rem; border-radius: 10% 0 10% 0;">
+                      <img class="card-img-top" style="border-radius: 15%; height: 20rem;" src="images/Surgeries.png" alt="Card image cap">
+                      <div class="card-body ">
+                          <h5 class="card-title">Book Appointments</h5>
+                          <p class="card-text">Safe and trusted surgery centers.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </main>
+      <section class="bg-light">
+        <div class="container p-5">
+            <h2>Consult top doctors online for any health concern</h2>
+            <p>Private online consultations with verified doctors in all specialists</p>
+            <div class="row p-2">
+                <div class="m-3 p-2 consult clickable-div" style="width: 13rem;">
+                    <img class="card-img-top p-4"style="" src="https://cdn.icon-icons.com/icons2/2239/PNG/512/measure_fever_coronavirus_covid_covid_covid_icon_134814.png" alt="Card image cap">
+                    <div class="card-body text-center">
+                      <h4 class="">Fever</h4>
+                      <p>$10</p>
+                      <a th:href="@{login-signup}" class="">CONSULT NOW</a>
+                    </div>
+                </div>
+                <div class=" m-3 p-2 consult clickable-div" style="width: 13rem;">
+                    <img class="card-img-top p-4" style="" src="https://cdn.icon-icons.com/icons2/2239/PNG/512/fever_thermometer_coronavirus_virus_icon_134832.png" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h4 class="">Cough & Could</h4>
+                        <p>$10</p>
+                      <a href="login-signup" class="">CONSULT NOW</a>
+                    </div>
+                </div>
+                <div class=" m-3 p-2 consult clickable-div" style="width: 13rem;">
+                    <img class="card-img-top p-4" style="" src="https://cdn.icon-icons.com/icons2/2183/PNG/512/fever_dengue_mosquito_disease_medical_virus_sickness_health_icon_133498.png" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h4 class="">Mosquito Bite</h4>
+                        <p>$10</p>
+                      <a href="login-signup" class="">CONSULT NOW</a>
+                    </div>
+                </div>
+                <div class=" m-3 p-2 consult clickable-div" style="width: 13rem;">
+                    <img class="card-img-top p-4" style="" src="https://cdn.icon-icons.com/icons2/2256/PNG/512/cough_sick_stomach_corona_virus_healthy_cold_icon_140182.png" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h4 class="">Stomach&digest.</h4>
+                        <p>$10</p>
+                      <a href="login-signup" class="">CONSULT NOW</a>
+                    </div>
+                </div>
+                <div class=" m-3 p-2 consult clickable-div" style="width: 14rem;">
+                    <img class="card-img-top p-4" style="" src="https://cdn.icon-icons.com/icons2/2240/PNG/512/sore_throat_coronavirus_covid_covid_virus_fever_icon_134852.png" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h4 class="">Dermatology</h4>
+                        <p>$10</p>
+                      <a href="login-signup" class="">CONSULT NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <section>
+            <div class="container p-5">
+                <h2>Book an appointment for an in-clinic consultation</h2>
+                <p>Find experienced doctors across all specialties</p>
+            
+                <div class="row clickable-div" id="clinic">
+                    <div class="card m-2 p-2 clinic" style="width: 18rem;">
+                        <img class="card-img-top" src="images/dentist.png" alt="Card image cap">
+                        <div class="card-body">
+                          <a href="#" class="">DENTIST</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, quidem.</p>
+                        </div>
+                    </div>
+                    <div class="card m-2 p-2 clinic clickable-div" style="width: 18rem;">
+                        <img class="card-img-top" src="images/heart.png" alt="Card image cap">
+                        <div class="card-body">
+                            <a href="#" class="">HEART ATTACK</a>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, quidem?</p>
+                        </div>
+                    </div>
+                    <div class="card m-2 p-2 clinic clickable-div" style="width: 18rem;">
+                        <img class="card-img-top" src="images/doctor.png" alt="Card image cap">
+                        <div class="card-body">
+                            <a href="#" class="">ARTHOPEDIST</a>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, ipsa.</p>
+                        </div>
+                    </div>
+                    <div class="card m-2 p-2 clinic clickable-div" style="width: 18rem;">
+                        <img class="card-img-top" src="images/heart.png" alt="Card image cap">
+                        <div class="card-body">
+                            <a href="#" class="">GENERAL PHYSICIAN</a>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam, deserunt!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-light pt-5 pb-5">
+            <div class="container">
+                <div class="row m-4">
+                    <div class="col-sm-4">
+                      <div class="">
+                        <div class="card-body">
+                          <h2 class="card-title">Read top articles from health experts</h2>
+                          <p class="card-text">Health articles that keep you informed about good health practices and achieve your goals.</p>
+                          <a href="#" class="btn btn-primary m-2">Read More Articles</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <img class="card-img-top" src="images/coron.png" alt="Card image cap">
+                          <h5 class="card-title">CORONAVIRUS</h5>
+                          <p class="card-text">12 Coronavirus Myths and Facts That You Should Be Aware Of</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                          <div class="card-body">
+                            <img class="card-img-top" src="images/fruit.png" alt="Card image cap">
+                            <h5 class="card-title">VITAMINE AND SUPPLIMENTS</h5>
+                            <p class="card-text">Eating Right to Build Immunity Against Cold and Viral Infections</p>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+        </section>
+        <footer class="pt-5 pb-5 navbar-light bg-info ">
+        <p class="d-flex justify-content-center bg-info fs-5 fw-bold" >Ayush Kushwaha | &copy; All Rights Reserved</p>
+        </footer>
+        
+
+
+        <script>
+          // Get all div elements with the class 'clickable-div'
+          const clickableDivs = document.querySelectorAll('.clickable-div');
+      
+          // Add a click event listener to each div
+          clickableDivs.forEach(div => {
+              div.addEventListener('click', () => {
+                  // Redirect to the login page
+                  window.location.href = 'login-signup'; // Adjust the path as needed
+              });
+          });
+      </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   </body>
+</html>

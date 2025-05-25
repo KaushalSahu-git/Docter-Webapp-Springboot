@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Doctors</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #find{
+            background-image: url(https://img.freepik.com/free-photo/medical-equipment-desk_23-2148519769.jpg?t=st=1732784746~exp=1732788346~hmac=e1aaa7601b7496aa458a677b41717b235536855eddf423b9462e3a2a9d647bee&w=996);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+  </head>
+ <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info p-3 sticky-top opacity-75">
+      <div class="container-fluid ">
+        <a class="navbar-brand text-light fs-1 fw-bolder" href="index">Doctors</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-dark"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light fw-bold fs-5" th:text="${session.user.name}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">User Name</a>
+              <ul class="dropdown-menu">
+                <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid m-2" alt="..."  width="60">
+                <span class="fw-bold"  th:text="${session.user.name}"></span>
+                <p class="m-1" th:text="${session.user.email}"></p>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" th:href="@{/user/MyAppointments}">My Appointments</a></li>
+                <li><a class="dropdown-item" href="#">My Test</a></li>
+                <li><a class="dropdown-item" th:href="@{/user/UserProfile}">View/Update Profile</a></li>
+                <li><a class="dropdown-item" th:href="@{/user/Help}">Security</a></li>
+                <li><a class="dropdown-item" th:href="@{/Logout}">Logout</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/user/UserHome}" class="nav-link active text-light fw-bold fs-5" aria-current="page" >Home</a>
+            </li>  
+            <li class="nav-item">
+                <a th:href="@{/user/Help}" class="nav-link text-light fw-bold fs-5" >Help</a>
+              </li>
+          </ul>
+          <!-- <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success bg-success text-white fs-5 fw-bold" type="submit">Search</button>
+          </form> -->
+        </div>
+      </div>
+    </nav>
+    <section id="find">
+        <div class="container p-5">
+            <!-- Headings Section -->
+            <div class="text-center mb-4">
+                <h3 class=" fw-bold text-dark">Find and Book Your Consult</h3>
+            </div>
+    
+            <!-- Form Section -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form 
+                        th:action="@{/SearchDoctor}" 
+                        method="get" 
+                        class="row g-3 align-items-center shadow p-4 bg-white rounded">
+                        <!-- State Dropdown -->
+                        <div class="col-md-4">
+                            <label for="state" class="form-label">
+                                <i class="fas fa-map-marker-alt"></i> State
+                            </label>
+                            <select 
+                                class="form-select" 
+                                id="state" 
+                                name="state" 
+                                required>
+                                <option value="" disabled selected>Choose a state</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Bihar">Bihar</option>
+                            </select>
+                        </div>
+    
+                        <!-- City Dropdown -->
+                        <div class="col-md-4">
+                            <label for="city" class="form-label">
+                                <i class="fas fa-city"></i> City
+                            </label>
+                            <select 
+                                class="form-select" 
+                                id="city" 
+                                name="city" 
+                                disabled 
+                                required>
+                                <option value="" disabled selected>Choose a city</option>
+                            </select>
+                        </div>
+    
+                        <!-- Submit Button -->
+                        <div class="col-md-4 d-grid">
+                            <label class="form-label invisible">Search</label>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Search Doctor
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form th:action="@{/SearchDoctorSpa}"
+                     method="get" 
+                     class="row g-3 align-items-center shadow p-4 bg-white rounded">
+                        <div class="col-md-8">
+                            <label for="doctorCategory" class="form-label"><i class="fa-solid fa-user-doctor"></i> Category</label>
+                            <select id="doctorCategory" class="form-select" name="speciality">
+                                <option value="" disabled selected>Choose a category</option>
+                                <option value="dentist">Dentist</option>
+                                <option value="dermatologist">Dermatologist (Skin Specialist)</option>
+                                <option value="cardiologist">Cardiologist (Heart Specialist)</option>
+                                <option value="neurologist">Neurologist (Brain and Nervous System)</option>
+                                <option value="pediatrician">Pediatrician (Child Specialist)</option>
+                                <option value="orthopedist">Orthopedist (Bone and Joint Specialist)</option>
+                                <option value="gynecologist">Gynecologist (Women's Health)</option>
+                                <option value="ent-specialist">ENT Specialist (Ear, Nose, Throat)</option>
+                                <option value="psychiatrist">Psychiatrist (Mental Health)</option>
+                                <option value="general-physician">General Physician</option>
+                                <option value="oncologist">Oncologist (Cancer Specialist)</option>
+                                <option value="endocrinologist">Endocrinologist (Hormones and Diabetes)</option>
+                                <option value="gastroenterologist">Gastroenterologist (Digestive System)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 d-grid">
+                            <label class="form-label invisible">Search</label>
+                            <button type="submit" class="btn btn-primary d-flex align-items-center">
+                                <i class="fas fa-search me-2"></i> Search Doctor
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Result Section -->
+            <div th:if="${doctors != null}" class="row justify-content-center mt-4">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-4 fw-bold text-primary">Available Doctors</h5>
+                            <div th:if="${doctors != null}">
+                                <div th:each="doctor : ${doctors}" class="card mb-4 shadow-sm">
+                                    <div class="row g-0">
+                                        <!-- Doctor Image Section -->
+                                        <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
+                                            <img th:if="${doctor.photo != null}" 
+                                                 th:src="@{/images/{photo}(photo=${doctor.photo})}" 
+                                                 class="img-fluid rounded-circle p-3" 
+                                                 alt="Doctor Image">
+                                            <img th:if="${doctor.photo == null}" 
+                                                 src="https://via.placeholder.com/100?text=Doctor+Image" 
+                                                 class="img-fluid rounded-circle p-3" 
+                                                 alt="Default Doctor Image">
+                                        </div>
+            
+                                        <!-- Doctor Details Section -->
+                                        <div class="col-md-9">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-2 fw-bold" th:text="${doctor.name}">Doctor Name</h5>
+                                                <p class="card-text mb-1">
+                                                    <strong>Speciality:</strong> <span th:text="${doctor.speciality}">Speciality</span>
+                                                </p>
+                                                <p class="card-text mb-1">
+                                                    <strong>Experience:</strong> <span th:text="${doctor.experience}">Experience</span> years
+                                                </p>
+                        
+                                                <!-- Action Buttons -->
+                                                <div class="d-flex gap-2 mt-3">
+                                                    <form th:action="@{/doctor/DoctorDetails}" method="post">
+                                                		<input type="hidden" name="doctorEmail" th:value="${doctor.email}" />
+                                                		<button class="btn btn-primary">View Details</button>
+                                                	</form>
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:if="${doctors == null}" class="text-center">
+                                <h2>No doctors available at the moment.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <section class="bg-light">
+        <div class="container p-5">
+            <h1>Our Doctors </h1>
+            <div class="row">
+                <div class="col-10 col-sm-8 col-md-6 col-lg-auto card p-1 m-4 flex-row" style="max-height: 100px; line-height: 4px; font-size:1;">
+                 <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid rounded-circle shadow-sm mb-3" alt="Doctor Image" width="100">
+                    <div>
+                        <h5>Ayush</h5>
+                        <p>Dermatology</p>
+                        <p>7 years of experience</p>
+                        <p>5467 consults done</p>
+                    </div>
+                </div>
+                <div class="col-10 col-sm-8 col-md-6 col-lg-auto card p-1 m-4 d-flex flex-row" style="max-height: 100px; line-height: 5px; font-size:1;">
+                    <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid rounded-circle shadow-sm mb-3" alt="Doctor Image" width="100">
+                       <div>
+                           <h5>Ayush</h5>
+                           <p>Dermatology</p>
+                           <p>7 years of experience</p>
+                           <p>5467 consults done</p>
+                       </div>
+                   </div>
+                   <div class="col-10 col-sm-8 col-md-6 col-lg-auto card p-1 m-4 d-flex flex-row" style="max-height: 100px; line-height: 5px; font-size:1;">
+                    <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid rounded-circle shadow-sm mb-3" alt="Doctor Image" width="100">
+                       <div>
+                           <h5>Ayush</h5>
+                           <p>Dermatology</p>
+                           <p>7 years of experience</p>
+                           <p>5467 consults done</p>
+                       </div>
+                   </div>
+                   <div class="col-10 col-sm-8 col-md-6 col-lg-auto card p-1 m-4 d-flex flex-row" style="max-height: 100px; line-height: 5px; font-size:1;">
+                    <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid rounded-circle shadow-sm mb-3" alt="Doctor Image" width="100">
+                       <div>
+                           <h5>Ayush</h5>
+                           <p>Dermatology</p>
+                           <p>7 years of experience</p>
+                           <p>5467 consults done</p>
+                       </div>
+                   </div>
+            </div>
+          </div>
+       </section>
+       <section>
+        <div class="d-flex justify-content-evenly p-5 bg-secondary">
+            <div class="text-center text-white">
+                <h1>2345+</h1>
+                <h3>Happy Users</h3>
+            </div>
+            <div class="text-center text-white">
+                <h1>200+</h1>
+                <h3>Verified Doctors</h3>
+            </div>
+            <div class="text-center text-white">
+                <h1>27+</h1>
+                <h3>Specialities</h3>
+            </div>
+        </div>
+       </section>
+       <section class="bg-light">
+        <div class="container p-5">
+            <h2>What our users say about their online consultation experience</h2>
+            <div class="container mt-4">
+              <div class="row p-4">
+                  <!-- Card 1 -->
+                  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                      <div class="card p-3 m-2 shadow-sm">
+                          <div class="d-flex align-items-center">
+                              <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid rounded-circle shadow-sm me-3" alt="Doctor Image" width="80">
+                              <div>
+                                  <h5 class="mb-1">Ayush</h5>
+                                  <p class="mb-1 text-muted">7 years of experience</p>
+                                  <p class="mb-0 text-muted">5467 consults done</p>
+                              </div>
+                          </div>
+                          <p class="mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni recusandae dolorum magnam.</p>
+                      </div>
+                  </div>
+                  <!-- Card 2 -->
+                  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                      <div class="card p-3 m-2 shadow-sm">
+                          <div class="d-flex align-items-center">
+                              <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid rounded-circle shadow-sm me-3" alt="Doctor Image" width="80">
+                              <div>
+                                  <h5 class="mb-1">Ayush</h5>
+                                  <p class="mb-1 text-muted">7 years of experience</p>
+                                  <p class="mb-0 text-muted">5467 consults done</p>
+                              </div>
+                          </div>
+                          <p class="mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni recusandae dolorum magnam.</p>
+                      </div>
+                  </div>
+                  <!-- Card 3 -->
+                  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                      <div class="card p-3 m-2 shadow-sm">
+                          <div class="d-flex align-items-center">
+                              <img src="https://cdn.icon-icons.com/icons2/979/PNG/256/Doctor_Male_icon-icons.com_75051.png" class="img-fluid rounded-circle shadow-sm me-3" alt="Doctor Image" width="80">
+                              <div>
+                                  <h5 class="mb-1">Ayush</h5>
+                                  <p class="mb-1 text-muted">7 years of experience</p>
+                                  <p class="mb-0 text-muted">5467 consults done</p>
+                              </div>
+                          </div>
+                          <p class="mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni recusandae dolorum magnam.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </div>
+       </section>
+        <footer class="pt-5 pb-5 navbar-light bg-info ">
+        <p class="d-flex justify-content-center bg-info fs-5 fw-bold" >Ayush Kushwaha | &copy; All Rights Reserved</p>
+        </footer>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        const citiesByState = {
+            "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
+            "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
+            "Delhi": ["New Delhi", "Dwarka", "Rohini", "Karol Bagh"],
+            "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli"],
+            "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
+            "West Bengal": ["Kolkata", "Howrah", "Darjeeling", "Asansol"],
+            "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+            "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Ajmer"],
+            "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur"],
+            "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"]
+        };
+    
+        document.getElementById('state').addEventListener('change', function () {
+            const state = this.value;
+            const cityDropdown = document.getElementById('city');
+    
+            // Clear existing options
+            cityDropdown.innerHTML = `<option value="" disabled selected>Choose a city</option>`;
+    
+            // Enable city dropdown if a state is selected
+            if (state) {
+                cityDropdown.disabled = false;
+    
+                // Populate cities for the selected state
+                if (citiesByState[state]) {
+                    citiesByState[state].forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city;
+                        option.textContent = city;
+                        cityDropdown.appendChild(option);
+                    });
+                }
+            } else {
+                cityDropdown.disabled = true;
+            }
+        });
+
+       
+
+    </script>
+   </body>
+</html>
